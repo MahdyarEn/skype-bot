@@ -17,6 +17,7 @@ def jalaliDate(obj):
 # varabile
 user = "" # Skype skype 
 password = "" # Password skype
+ADMIN_LIVE_ID = "live:.cid.df869b09bdca9259"
 # Connect to database
 db = mysql.connector.connect(
     host="localhost",
@@ -107,7 +108,7 @@ class SkypeHomeworkBot(SkypeEventLoop):
         # homeWorkTitle
         if isinstance(event, SkypeNewMessageEvent) \
                 and not event.msg.userId == self.userId \
-                and event.msg.userId == "live:.cid.df869b09bdca9259"\
+                and event.msg.userId == ADMIN_LIVE_ID\
                 and re.match(r"^!add[\n\n]", event.msg.content):
             result = re.split("\n", event.msg.content)
             sql = f"INSERT INTO info (date,title,name) VALUES ('{result[1]}','{result[3]}','{result[2]}')"
