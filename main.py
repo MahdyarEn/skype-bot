@@ -15,8 +15,8 @@ def jalaliDate(obj):
 
 
 # varabile
-user = "" # Skype skype 
-password = "" # Password skype
+user = ""  # Skype skype
+password = ""  # Password skype
 ADMIN_LIVE_ID = "live:.cid.df869b09bdca9259"
 # Connect to database
 db = mysql.connector.connect(
@@ -39,6 +39,11 @@ class SkypeHomeworkBot(SkypeEventLoop):
 
     #
     def onEvent(self, event):
+
+        if isinstance(event, SkypeNewMessageEvent)\
+                and not event.msg.userId == self.userId \
+                and event.msg.content == "!help":
+            event.msg.chat.sendMsg("دستورات ربات به شکل زیر می باشد (pointdownindex) \n\n(pointleftindex)  تکلیف => دریافت تکلیف\n(pointleftindex)  !all => دریافت تمامی تکالیف آینده\n(pointleftindex)  !add => اضافه کردن تکلیف به لیست\n\n\n(heartgreen)  این ربات بصورت اوپن سورس در دسترس هست:\nhttps://github.com/MahdyarEn/skype-bot")
         # Homework
         if isinstance(event, SkypeNewMessageEvent) \
                 and not event.msg.userId == self.userId \
