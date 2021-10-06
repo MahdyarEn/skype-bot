@@ -39,11 +39,6 @@ class SkypeHomeworkBot(SkypeEventLoop):
 
     #
     def onEvent(self, event):
-        if isinstance(event, SkypeNewMessageEvent)\
-                and not event.msg.userId == self.userId \
-                and "دفتر" in event.msg.content:
-            event.msg.chat.sendMsg("✨لیست دفترهای لازم برای سال تحصیلی نهم به شرح زیر می باشد (pointdownindex)   :\n\n(1f4da_books)  ادبیات: 80 برگ\n(1f4da_books)  فیزیک: 60 برگ\n(1f4da_books)  ریاضی: 100 برگ\n(1f4da_books)  هندسه: اگر خواستیم میتوانیم تهیه کنیم\n(1f4da_books)  عربی: لازم ندارد.\n(1f4da_books)  علوم: نمیخواهد ولی اگر دفترچه نوت برداری داشته باشیم خوب هست\n(1f4da_books)  توحید: 100 برگ")
-
         # Homework
         if isinstance(event, SkypeNewMessageEvent) \
                 and not event.msg.userId == self.userId \
