@@ -125,3 +125,4 @@ class SkypeHomeworkBot(SkypeEventLoop):
 
 sk = SkypeHomeworkBot()
 sk.loop()
+
