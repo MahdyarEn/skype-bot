@@ -15,15 +15,15 @@ def jalaliDate(obj):
 
 
 # varabile
-user = ""  # Skype skype
-password = ""  # Password skype
+user = "example@gmqail.com"  # Skype skype
+password = "password"  # Password skype
 ADMIN_LIVE_ID = "live:.cid.df869b09bdca9259"
 # Connect to database
 db = mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="",
-    database="homework"
+    user="nikanir_homework",
+    password="A*PV.0*]U!Mv",
+    database="nikanir_homework"
 )
 mycursor = db.cursor()
 # check connetction status
@@ -43,12 +43,12 @@ class SkypeHomeworkBot(SkypeEventLoop):
         if isinstance(event, SkypeNewMessageEvent)\
                 and not event.msg.userId == self.userId \
                 and event.msg.content == "!help":
-            event.msg.chat.sendMsg("دستورات ربات به شکل زیر می باشد (pointdownindex) \n\n(pointleftindex)  تکلیف => دریافت تکلیف\n(pointleftindex)  !all => دریافت تمامی تکالیف آینده\n(pointleftindex)  !add => اضافه کردن تکلیف به لیست\n\n\n(heartgreen)  این ربات بصورت اوپن سورس در دسترس هست:\nhttps://github.com/MahdyarEn/skype-bot")
+            event.msg.chat.sendMsg("دستورات ربات به شکل زیر می باشد (pointdownindex) \n\n(pointleftindex)  تکلیف => دریافت تکلیف\n(pointleftindex)  !all => دریافت تمامی تکالیف آینده\n(pointleftindex)  !add => اضافه کردن تکلیف به لیست")
         # Homework
         if isinstance(event, SkypeNewMessageEvent) \
                 and not event.msg.userId == self.userId \
                 and re.match(r"^تکلیف", event.msg.content):
-            todayDate = jalaliDate(datetime.utcfromtimestamp(int(time())))
+            todayDate = jalaliDate(datetime.fromtimestamp(int(time())))
             try:
                 mycursor.execute(
                     f"SELECT * FROM info where date='{todayDate}'")
@@ -74,7 +74,7 @@ class SkypeHomeworkBot(SkypeEventLoop):
             myresult = mycursor.fetchall()
             allHomework = ''
             for i in range(1, len(myresult)):
-                date = jalaliDate(datetime.utcfromtimestamp(
+                date = jalaliDate(datetime.fromtimestamp(
                     int(time())) + timedelta(days=i))
                 try:
                     mycursor.execute(
